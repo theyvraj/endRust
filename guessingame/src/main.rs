@@ -1,18 +1,26 @@
-use std::io;
-use std::io::Writing;
 use rand::Rng;
+use std::io::{self, Write};
 fn main() {
-    let secret = rand::thread_rng().gen_range(1..=10);
     println!("Welcome to my guessing game");
-        print!("Enter your guess! :");
-        let mut guess = String::new();
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line.");
-        let guess: i32 = match guess.trim().parse(){
-            Ok(num) => num,
-            Err(_) => {
-                println!("Enter a numebr, nothing else!");
-                continue;
-            } 
-        };
+    let secret = rand::thread_rng().gen_range(1..=10);
+    print!("Enter your guess! :");
+    io::stdout().flush().expect("Failed to flush stdout.");
+    let mut guess = String::new();
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line.");
+    let guess: u32 = match guess.trim().parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("Please enter a valid number.");
+            return;
+        }
+    };
+
+    println!("You guessed: {guess}");
+    if guess == secret {
+        println!("Congratulations! You guessed correctly.");
+    } else {
+        println!("Sorry, the correct number was : {secret}!");
+    }
+}
