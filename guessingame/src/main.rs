@@ -1,7 +1,7 @@
 use rand::Rng;
 use std::io::{self, Write};
 fn main() {
-    loop{
+    loop {
         println!("Welcome to my guessing game");
         let secret = rand::thread_rng().gen_range(1..=10);
         print!("Enter your guess! :");
@@ -30,16 +30,16 @@ fn main() {
         io::stdin()
             .read_line(&mut reinput)
             .expect("Failed to read line!");
-        match reinput.trim().to_lowercase().as_str(){
+        match reinput.trim().to_lowercase().as_str() {
             "yes" => continue,
             "no" => {
-                println!("Thank you for playing! Goodbye...")
+                println!("Thank you for playing! Goodbye...");
                 break;
-            },
+            }
             _ => {
                 println!("Invalid response. Enter valid response again.");
                 continue;
             }
-        }        
+        }
     }
 }
