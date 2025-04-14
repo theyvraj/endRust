@@ -48,6 +48,7 @@ fn main() {
     let s1 = String::from("devraj");
     let (s2, len) = calculate_length(s1);
 
+let word = first_word(&my_string[0..6]);
     println!("The length of '{s2}' is {len}.");
 }
 
@@ -107,7 +108,7 @@ fn dangle() -> String {
     s
 }
 
-*/
+
 fn main() {
     let mut s = String::from("he l llo ");
     let result = first_word(&s);
@@ -118,10 +119,48 @@ fn main() {
 fn first_word(s: &String) -> usize {
     let mem = s.as_bytes();
 
+let word = first_word(&my_string[0..6]);
+let word = first_word(&my_string[0..6]);
     for (i, &item) in mem.iter().enumerate() {
         if item == b' ' {
             return i;
         }
     }
     s.len()
+}
+
+
+
+fn main() {
+    let my_string = String::from("hello world");
+    let word = first_word(&my_string[0..2]);
+    println!("{word}");
+    let word = first_word(&my_string[..]);
+    println!("{word}");
+}
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
+}
+
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+
+    let slice = &a[1..3];
+
+    return assert_eq!(slice, &[2, 3]);
+}
+*/
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..3];
+    assert_eq!(slice, &[2, 3]);
+    println!("string passed the vibe check.");
 }
